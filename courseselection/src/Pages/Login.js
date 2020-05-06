@@ -17,15 +17,13 @@ function Login(props){
             setTimeout(()=>{
                 setIsLoading(false)
             },500)
-            return false
+            return false;
         }else if(!password){
             message.error('密码不能为空')
             setTimeout(()=>{
                 setIsLoading(false)
             },500)
             return false
-        }else{
-            props.history.push('student/index');
         }
         let dataProps = {
             'userName':userName,

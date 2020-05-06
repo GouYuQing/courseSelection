@@ -3,6 +3,10 @@ import 'antd/dist/antd.css'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import '../../static/css/StudentIndex.css'
 import CourseSelect from './CourseSelect'
+import GroupConfirm from './GroupConfirm'
+import LeaderConfirm from './LeaderConfirm'
+import MemberInfo from './MemberInfo'
+import TitleView from './TitleView'
 import { Layout, Menu, Breadcrumb } from 'antd';
 import {
     DesktopOutlined,
@@ -12,14 +16,35 @@ import {
     UserOutlined,
 } from '@ant-design/icons';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
-function StudentIndex() {
+function StudentIndex(props) {
     const [collapsed, setCollapsed] = useState(false);
+    //可左右滑动只显示图标
     const onCollapse = collapsed => {
         setCollapsed(collapsed);
     };
+    const memberChange=(e)=>{
+        if (e.key == 'groupConfirm') {
+            props.history.push('/student/groupConfirm')
+          }else if(e.key=='leaderConfirm'){
+            props.history.push('/student/leaderConfirm')
+          } else if(e.key=='memberInfo'){
+            props.history.push('/student/memberInfo')
+          }else if(e.key=='titleView'){
+            props.history.push('/student/titleView')
+          }
+    };
+    function dataChange(e){
+        if (e.key == 'dataUpload') {
+            props.history.push('/student/dataUpload')
+          }else if(e.key=='selfAssessment'){
+            props.history.push('/student/selfAssessment')
+          } else if(e.key=='checkData'){
+            props.history.push('/student/checkData')
+          }
+    }
     return (
         <Layout style={{ minHeight: '100vh' }}>
             <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
@@ -35,6 +60,7 @@ function StudentIndex() {
                     </Menu.Item>
                     <SubMenu
                         key="sub1"
+                        onClick={memberChange}
                         title={
                             <span>
                                 <UserOutlined />
@@ -42,13 +68,14 @@ function StudentIndex() {
                             </span>
                         }
                     >
-                        <Menu.Item key="3">分组确认</Menu.Item>
-                        <Menu.Item key="4">组长确认</Menu.Item>
-                        <Menu.Item key="5">组员信息查看</Menu.Item>
-                        <Menu.Item key="6">选题查看</Menu.Item>
+                        <Menu.Item key="groupConfirm">分组确认</Menu.Item>
+                        <Menu.Item key="leaderConfirm">组长确认</Menu.Item>
+                        <Menu.Item key="memberInfo">组员信息查看</Menu.Item>
+                        <Menu.Item key="titleView">选题查看</Menu.Item>
                     </SubMenu>
                     <SubMenu
                         key="sub2"
+                        onClick={dataChange}
                         title={
                             <span>
                                 <TeamOutlined />
@@ -56,9 +83,9 @@ function StudentIndex() {
                             </span>
                         }
                     >
-                        <Menu.Item key="7">开发资料上传</Menu.Item>
-                        <Menu.Item key="8">自我评价</Menu.Item>
-                        <Menu.Item key="9">组长检查成果</Menu.Item>
+                        <Menu.Item key="dataUpload">开发资料上传</Menu.Item>
+                        <Menu.Item key="selfAssessment">自我评价</Menu.Item>
+                        <Menu.Item key="checkData">组长检查成果</Menu.Item>
                     </SubMenu>
                     <Menu.Item key="10">
                         <FileOutlined />
@@ -73,9 +100,14 @@ function StudentIndex() {
                     </Breadcrumb>
                     <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                     <Router>
-                        <Route path="/student/index/" exact component={CourseSelect} />
+                        {/* <Route path="/student/index/" exact component={StudentIndex} /> */}
+                        {/* <Route path="/student/groupConfirm/" exact component={GroupConfirm} />
+                         <Route path="/student/leaderConfirm/" exact component={LeaderConfirm} />
+                        <Route path="/student/memberInfo/" exact component={MemberInfo} />
+                        <Route path="/student/titleView/" exact component={TitleView} /> */}
+                        <Route path="/student/index/" exact component={CourseSelect} /> 
                     </Router>
-            </div>
+                    </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>Curriculum Design System Design ©2020 Created By Yu</Footer>
             </Layout>
