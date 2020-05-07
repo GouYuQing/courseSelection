@@ -6,6 +6,9 @@ import GroupConfirm from './Student/GroupConfirm'
 import LeaderConfirm from './Student/LeaderConfirm'
 import MemberInfo from './Student/MemberInfo'
 import TitleView from './Student/TitleView'
+import DataUpload from './Student/dataUpload'
+import SelfAssessment from './Student/selfAssessment'
+import CheckData from './Student/checkData'
 
 function Main(){
     return (
@@ -16,6 +19,10 @@ function Main(){
             <Route path="/student/leaderConfirm" exact component={LeaderConfirm} />
            <Route path="/student/memberInfo" exact component={MemberInfo} />
             <Route path="/student/titleView" exact component={TitleView} />
+            <Route path="/student/dataUpload" exact component={DataUpload} />
+            <Route path="/student/selfAssessment" exact component={SelfAssessment} />
+            <Route path="/student/checkData" exact component={CheckData} />
+
         </Router>
     )
 }

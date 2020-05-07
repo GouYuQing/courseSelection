@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import '../../static/css/CourseSelect.css'
 import { Table} from 'antd';
 import { DeleteOutlined,EditOutlined,CheckOutlined } from '@ant-design/icons';
-// import moment from 'moment';
 
 function CourseSelect(props) {
   const dataSource = [
